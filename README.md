@@ -10,25 +10,25 @@
 
 #### 22.03 - 11.04
 
-[] dodanie możliwości tworzenia konta oraz logowania się
+[] dodanie możliwości tworzenia konta oraz logowania się <br />
 [] sprawdzanie poprawności formularza wypełnionych danych 
 
 #### 04.04 - 09.05 
 
-[] dodawanie spotkania do kalendarza
+[] dodawanie spotkania do kalendarza <br />
 [] zautomatyzowane wysyłanie emaili z potwierdzeniem umówienia wizyty
 
 #### 10.05 - 23.05 
 
-[] dopracowanie zakładki konta użytkownika
-[] dodanie opcji odwołania spotkania 
-[] przeglądanie historii 
+[] dopracowanie zakładki konta użytkownika <br />
+[] dodanie opcji odwołania spotkania <br />
+[] przeglądanie historii <br />
 [] wysyłanie emaila z przypomnieniem o spotkaniu
 
 #### 24.05 - 17.06
 
-[] dopracowanie detali
-[] sprawdzenie poprawności działania strony i ewentualne poprawienie błędów
+[] dopracowanie detali <br />
+[] sprawdzenie poprawności działania strony i ewentualne poprawienie błędów <br />
 [] przygotowanie podsumowania oraz prezentacji końcowej
 
 ### Używane technologie:
