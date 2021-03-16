@@ -8,12 +8,12 @@
 [] stworzenie wyglądu strony jako kalendarza (GUI) <br />
 [] opracowanie struktury baz danych
 
-#### 22.03 - 11.04
+#### 29.03 - 11.04
 
 [] dodanie możliwości tworzenia konta oraz logowania się <br />
 [] sprawdzanie poprawności formularza wypełnionych danych 
 
-#### 04.04 - 09.05 
+#### 11.04 - 09.05 
 
 [] dodawanie spotkania do kalendarza <br />
 [] zautomatyzowane wysyłanie emaili z potwierdzeniem umówienia wizyty
@@ -42,8 +42,9 @@
 
 
 #### 04.02 - 28.03
-#### 22.03 - 11.04
-#### 04.04 - 09.05 
+- konfiguracja django, zapoznanie się z funkcjonalnościami (https://docs.djangoproject.com/pl/3.1/intro/tutorial01/)
+#### 29.03 - 11.04
+#### 11.04 - 09.05 
 #### 10.05 - 23.05 
 #### 24.05 - 17.06
 
