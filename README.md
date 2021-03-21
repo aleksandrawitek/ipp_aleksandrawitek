@@ -44,6 +44,7 @@
 #### 04.02 - 28.03
 - konfiguracja django, zapoznanie się z funkcjonalnościami (https://docs.djangoproject.com/pl/3.1/intro/tutorial01/)
 - https://www.youtube.com/watch?v=ZsJRXS_vrw0&t=29s
+- opracowanie grafik strony głównej
 #### 29.03 - 11.04
 #### 11.04 - 09.05 
 #### 10.05 - 23.05 
