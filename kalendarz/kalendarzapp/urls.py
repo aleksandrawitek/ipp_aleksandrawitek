@@ -1,5 +1,5 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 
-urlpatterns = [path('', views.current_datetime, name = 'currentdatetime'),]
+urlpatterns = [path('', views.glowna, name = 'glowna'),]
