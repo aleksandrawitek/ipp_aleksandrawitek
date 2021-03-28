@@ -6,7 +6,7 @@
 #### 04.02 - 28.03
 
 - [x] stworzenie wyglądu strony jako kalendarza (GUI) <br />
-- [ ] opracowanie struktury baz danych
+- [x] opracowanie struktury baz danych
 
 #### 29.03 - 11.04
 
@@ -52,6 +52,7 @@
 - opracowanie przycisków "wstecz", "naprzód"
 - wyświetlanie wybranego miesiąca, roku
 - dopasowanie ilości dni do wybranego miesiąca i roku oraz przypasowanie odpowiednich nazw "poniedziałek" itp.
+- opracowanie tabeli w bazie danych "db.sqlite3"
 #### 29.03 - 11.04
 #### 11.04 - 09.05 
 #### 10.05 - 23.05 
