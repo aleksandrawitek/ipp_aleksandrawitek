@@ -70,19 +70,22 @@
                 </table>
                 <table id = "days">
                     <tr>
-                        <td id = "1"></td><td id = "2"></td><td></td><td></td><td></td><td></td><td></td>
+                        <td id = "0"></td><td id = "1"></td><td id = "2"></td><td id = "3"></td><td id = "4"></td><td id = "5"></td><td id = "6"></td>
                     </tr>
                     <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td id = "7"></td><td id = "8"></td><td id = "9"></td><td id = "10"></td><td id = "11"></td><td id = "12"></td><td id = "13"></td>
                     </tr>
                     <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td id = "14"></td><td id = "15"></td><td id = "16"></td><td id = "17"></td><td id = "18"></td><td id = "19"></td><td id = "20"></td>
                     </tr>
                     <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td id = "21"></td><td id = "22"></td><td id = "23"></td><td id = "24"></td><td id = "25"></td><td id = "26"></td><td id = "27"></td>
                     </tr>
                     <tr>
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td id = "28"></td><td id = "29"></td><td id = "30"></td><td id = "31"></td><td id = "32"></td><td id = "33"></td><td id = "34"></td>
+                    </tr>
+                    <tr>
+                        <td id = "35"></td><td id = "36"></td><td id = "37"></td><td id = "38"></td><td id = "39"></td><td id = "40"></td><td id = "41"></td>
                     </tr>
                 </table>
             </center>
@@ -93,7 +96,7 @@
                 var month = date.getMonth();
                 var year = date.getFullYear();
 
-                //get month dostarcza zwraca liczby od 0-11 
+                //get month zwraca liczby od 0-11 
                 //funkcja zamienia te liczby na tekst
                 function month_num2text(x)
                 {
@@ -161,6 +164,7 @@
                 var created_date;
                 var day_name_number;
                 var table = document.getElementById('days');
+                var num_days;
 
                 //nazwa miesiaca na angielski
                 function month_pl2eng()
@@ -215,28 +219,136 @@
                     }
                 }
 
+                function number_of_days()
+                {
+                    if(new_month == 0)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 1)
+                    {
+                        if(new_year%4 == 0)
+                        {
+                            num_days = 29;
+                        }
+                        else
+                        {
+                            num_days = 28;
+                        }
+                    }
+                    else if(new_month == 2)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 3)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 4)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 5)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 6)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 7)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 8)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 9)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 10)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 11)
+                    {
+                        num_days = 31;
+                    }
+                }
+
                 function create_date()
                 {
                     text4 = text3 + " 1, " + new_year;
+                    number_of_days();
                     created_date = new Date(text4);
+                    //funkcja get day zwraca 0 - dla niedzieli, 1 - pon itd
                     day_name_number = created_date.getDay();
 
                     function start_date()
                     {
-                        //do dokonczenia!
-                        if (day_name_number == 1) 
+                        if (day_name_number == 0)
                         {
-                            var cell = document.getElementById("1");
-                            cell.innerHTML = day_name_number;
-                            cell.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");  
+                            var cell = document.getElementById(6);
+                            cell.innerHTML = 1;
+                            cell.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                            var i;
+                            var day = 2;
+                            var i;
+                            for (i = 7; i < 6+num_days; i++)
+                            {
+                                var cell2 = document.getElementById(i);
+                                cell2.innerHTML = day;
+                                cell2.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                                day += 1;  
+                            }
+                            for (i = 0; i < 6; i++)
+                            {
+                                var cell3 = document.getElementById(i);
+                                cell3.innerHTML = "";  
+                            }
+                            for (i = num_days+6; i < 42; i++)
+                            {
+                                var cell4 = document.getElementById(i);
+                                cell4.innerHTML = "";  
+                            }
+
+                        }
+                        else
+                        {
+                            var cell = document.getElementById(day_name_number-1);
+                            cell.innerHTML = 1;
+                            cell.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                            var i;
+                            var day = 2;
+                            for (i = day_name_number; i < (day_name_number + num_days + 1); i++)
+                            {
+                                var cell2 = document.getElementById(i);
+                                cell2.innerHTML = day;
+                                cell2.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                                day += 1;  
+                            }
+                            for (i = 0; i < day_name_number-1; i++)
+                            {
+                                var cell3 = document.getElementById(i);
+                                cell3.innerHTML = "";  
+                            }
+                            for (i = num_days + day_name_number - 1; i < 42; i++)
+                            {
+                                var cell4 = document.getElementById(i);
+                                cell4.innerHTML = "";  
+                            }
                         }
                     }
                     start_date();
 
                 }
 
+
                 function month_left()
                 {
+                    
                     if (new_month == 0)
                     {
                         new_month = 11;
@@ -261,6 +373,7 @@
 
                 function month_right()
                 {
+                    
                     if (new_month == 11)
                     {
                         new_month = 0;
@@ -280,10 +393,16 @@
                         create_date();
                         document.getElementById("month_title").innerHTML = text;
                     }
-                
+        
                 }
+                //wyswietlanie biezacego miesiaca po odpaleniu strony
+                text = month_num2text(month) + ' ' + year;
+                text2 = month_num2text(month);
+                month_pl2eng();
+                create_date();
 
-                
+
+
                 
 
             </script>
