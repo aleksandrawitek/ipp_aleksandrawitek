@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8"></charset>
+        <title> Korepetycje </title>
+        <link href='http://fonts.googleapis.com/css?family=Buenard&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+            <style>
+                body 
+                {
+                    background-image: url("../../static/glowna_tlo.png");
+                    padding-top: 150px;
+                    font-family: 'Buenard', sans-serif;
+                    
+                }
+    
+                #month_title 
+                {
+                    background-color: #b3ccff;
+                    margin-top: 10px;
+                    width: 84%;
+                    height: 60px;
+                    text-align: center;
+                    font-size: 35px;
+                }
+                #month_left
+                {
+                    float: left;
+                    margin-left: 8%;
+                    width: 5%;
+                }
+                #month_right
+                {
+                    float: right;
+                    margin-right: 8%;
+                    width: 5%;
+                }
+
+                #week_days, #days
+                {
+                    width: 84%;
+                    margin-top: 5px;
+                }
+                #week_days td
+                {
+                    border: solid black;
+                    background-color: 	 #ccddff;
+                    width: 12%;
+                    text-align: center;
+                }
+
+                #days td
+                {
+                    border: solid black;
+                    width: 12%;
+                    height: 70px;
+                    background-color: white;
+                }
+            </style>
+            <center>
+                <button id = "month_left" onclick="month_left()">&#9664</button>
+                <button id = "month_right" onclick="month_right()">&#9654</button>
+                <div id = "month_title">
+                </div>
+                <table id = "week_days">
+                    <tr>
+                        <td>Poniedziałek</td><td>Wtorek</td><td>Środa</td><td>Czwartek</td><td>Piątek</td><td>Sobota</td><td>Niedziela</td>
+                    </tr>
+                </table>
+                <table id = "days">
+                    <tr>
+                        <td id = "0"></td><td id = "1"></td><td id = "2"></td><td id = "3"></td><td id = "4"></td><td id = "5"></td><td id = "6"></td>
+                    </tr>
+                    <tr>
+                        <td id = "7"></td><td id = "8"></td><td id = "9"></td><td id = "10"></td><td id = "11"></td><td id = "12"></td><td id = "13"></td>
+                    </tr>
+                    <tr>
+                        <td id = "14"></td><td id = "15"></td><td id = "16"></td><td id = "17"></td><td id = "18"></td><td id = "19"></td><td id = "20"></td>
+                    </tr>
+                    <tr>
+                        <td id = "21"></td><td id = "22"></td><td id = "23"></td><td id = "24"></td><td id = "25"></td><td id = "26"></td><td id = "27"></td>
+                    </tr>
+                    <tr>
+                        <td id = "28"></td><td id = "29"></td><td id = "30"></td><td id = "31"></td><td id = "32"></td><td id = "33"></td><td id = "34"></td>
+                    </tr>
+                    <tr>
+                        <td id = "35"></td><td id = "36"></td><td id = "37"></td><td id = "38"></td><td id = "39"></td><td id = "40"></td><td id = "41"></td>
+                    </tr>
+                </table>
+            </center>
+            <script>
+
+                //pobranie daty 
+                var date = new Date();
+                var month = date.getMonth();
+                var year = date.getFullYear();
+
+                //get month zwraca liczby od 0-11 
+                //funkcja zamienia te liczby na tekst
+                function month_num2text(x)
+                {
+                    if(x == 0)
+                    {
+                        return "Styczeń";
+                    }
+                    else if(x == 1)
+                    {
+                        return "Luty";
+                    }
+                    else if(x == 2)
+                    {
+                        return "Marzec";
+                    }
+                    else if(x == 3)
+                    {
+                        return "Kwiecień";
+                    }
+                    else if(x == 4)
+                    {
+                        return "Maj";
+                    }
+                    else if(x == 5)
+                    {
+                        return "Czerwiec";
+                    }
+                    else if(x == 6)
+                    {
+                        return "Lipiec";
+                    }
+                    else if(x == 7)
+                    {
+                        return "Sierpień";
+                    }
+                    else if(x == 8)
+                    {
+                        return "Wrzesień";
+                    }
+                    else if(x == 9)
+                    {
+                        return "Październik";
+                    }
+                    else if(x == 10)
+                    {
+                        return "Listopad";
+                    }
+                    else if(x == 11)
+                    {
+                        return "Grudzień";
+                    }
+                }
+               
+                //odpowiedni miesiąc jako nagłówek kalendarza, docelowo obecny miesiac
+                
+                document.getElementById("month_title").innerHTML = month_num2text(month) + ' ' + year;
+
+                //zmiana miesiaca
+                var new_month = month;
+                var new_year = year;
+                var text;
+                var text2;
+                var text3;
+                var text4;
+                var created_date;
+                var day_name_number;
+                var table = document.getElementById('days');
+                var num_days;
+
+                //nazwa miesiaca na angielski
+                function month_pl2eng()
+                {
+                    if(text2 == "Styczeń")
+                    {
+                        text3 = "January";
+                    }
+                    else if(text2 == "Luty")
+                    {
+                        text3 = "February";
+                    }
+                    else if(text2 == "Marzec")
+                    {
+                        text3 = "March";
+                    }
+                    else if(text2 == "Kwiecień")
+                    {
+                        text3 = "April";
+                    }
+                    else if(text2 == "Maj")
+                    {
+                        text3 = "May";
+                    }
+                    else if(text2 == "Czerwiec")
+                    {
+                        text3 = "June";
+                    }
+                    else if(text2 == "Lipiec")
+                    {
+                        text3 = "July";
+                    }
+                    else if(text2 == "Sierpień")
+                    {
+                        text3 = "August";
+                    }
+                    else if(text2 == "Wrzesień")
+                    {
+                        text3 = "September";
+                    }
+                    else if(text2 == "Październik")
+                    {
+                        text3 = "October";
+                    }
+                    else if(text2 == "Listopad")
+                    {
+                        text3 = "November";
+                    }
+                    else if(text2 == "Grudzień")
+                    {
+                        text3 = "December";
+                    }
+                }
+
+                function number_of_days()
+                {
+                    if(new_month == 0)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 1)
+                    {
+                        if(new_year%4 == 0)
+                        {
+                            num_days = 29;
+                        }
+                        else
+                        {
+                            num_days = 28;
+                        }
+                    }
+                    else if(new_month == 2)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 3)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 4)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 5)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 6)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 7)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 8)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 9)
+                    {
+                        num_days = 31;
+                    }
+                    else if(new_month == 10)
+                    {
+                        num_days = 30;
+                    }
+                    else if(new_month == 11)
+                    {
+                        num_days = 31;
+                    }
+                }
+
+                function create_date()
+                {
+                    text4 = text3 + " 1, " + new_year;
+                    number_of_days();
+                    created_date = new Date(text4);
+                    //funkcja get day zwraca 0 - dla niedzieli, 1 - pon itd
+                    day_name_number = created_date.getDay();
+
+                    function start_date()
+                    {
+                        if (day_name_number == 0)
+                        {
+                            var cell = document.getElementById(6);
+                            cell.innerHTML = 1;
+                            cell.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                            var i;
+                            var day = 2;
+                            var i;
+                            for (i = 7; i < 6+num_days; i++)
+                            {
+                                var cell2 = document.getElementById(i);
+                                cell2.innerHTML = day;
+                                cell2.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                                day += 1;  
+                            }
+                            for (i = 0; i < 6; i++)
+                            {
+                                var cell3 = document.getElementById(i);
+                                cell3.innerHTML = "";  
+                            }
+                            for (i = num_days+6; i < 42; i++)
+                            {
+                                var cell4 = document.getElementById(i);
+                                cell4.innerHTML = "";  
+                            }
+
+                        }
+                        else
+                        {
+                            var cell = document.getElementById(day_name_number-1);
+                            cell.innerHTML = 1;
+                            cell.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                            var i;
+                            var day = 2;
+                            for (i = day_name_number; i < (day_name_number + num_days + 1); i++)
+                            {
+                                var cell2 = document.getElementById(i);
+                                cell2.innerHTML = day;
+                                cell2.setAttribute('style', "vertical-align: top; align: right, font-weight: bold; font-size: 20px");
+                                day += 1;  
+                            }
+                            for (i = 0; i < day_name_number-1; i++)
+                            {
+                                var cell3 = document.getElementById(i);
+                                cell3.innerHTML = "";  
+                            }
+                            for (i = num_days + day_name_number - 1; i < 42; i++)
+                            {
+                                var cell4 = document.getElementById(i);
+                                cell4.innerHTML = "";  
+                            }
+                        }
+                    }
+                    start_date();
+
+                }
+
+
+                function month_left()
+                {
+                    
+                    if (new_month == 0)
+                    {
+                        new_month = 11;
+                        new_year = new_year - 1;
+                        text = month_num2text(new_month) + ' ' + new_year;
+                        text2 = month_num2text(new_month);
+                        month_pl2eng();
+                        create_date();
+                        document.getElementById("month_title").innerHTML = text;
+                    }
+                    else
+                    {
+                        new_month = new_month - 1;
+                        text = month_num2text(new_month) + ' ' + new_year;
+                        text2 = month_num2text(new_month);
+                        month_pl2eng();
+                        create_date();
+                        document.getElementById("month_title").innerHTML = text;
+                    }
+                
+                }
+
+                function month_right()
+                {
+                    
+                    if (new_month == 11)
+                    {
+                        new_month = 0;
+                        new_year = new_year + 1;
+                        text = month_num2text(new_month) + ' ' + new_year;
+                        text2 = month_num2text(new_month)
+                        month_pl2eng();
+                        create_date();
+                        document.getElementById("month_title").innerHTML = text;
+                    }
+                    else
+                    {
+                        new_month = new_month + 1;
+                        text = month_num2text(new_month) + ' ' + new_year;
+                        text2 = month_num2text(new_month);
+                        month_pl2eng();
+                        create_date();
+                        document.getElementById("month_title").innerHTML = text;
+                    }
+        
+                }
+                //wyswietlanie biezacego miesiaca po odpaleniu strony
+                text = month_num2text(month) + ' ' + year;
+                text2 = month_num2text(month);
+                month_pl2eng();
+                create_date();
+
+
+
+                
+
+            </script>
+    </body>
+</html>
