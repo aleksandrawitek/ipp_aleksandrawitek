@@ -5,7 +5,7 @@
 
 #### 04.02 - 28.03
 
-[x] stworzenie wyglądu strony jako kalendarza (GUI) <br />
+-[x] stworzenie wyglądu strony jako kalendarza (GUI) <br />
 [] opracowanie struktury baz danych
 
 #### 29.03 - 11.04
