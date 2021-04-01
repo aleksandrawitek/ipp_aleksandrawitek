@@ -54,7 +54,7 @@
 - dopasowanie ilości dni do wybranego miesiąca i roku oraz przypasowanie odpowiednich nazw "poniedziałek" itp.
 - opracowanie tabeli w bazie danych "db.sqlite3"
 #### 29.03 - 11.04
+- zapoznanie się z wieloma poradnikami dot. tworzenia kont w django oraz panelu administratora (m.in kurs django girls, https://rk.edu.pl/pl/wprowadzenie-do-django-10/)
 #### 11.04 - 09.05 
 #### 10.05 - 23.05 
 #### 24.05 - 17.06
-
