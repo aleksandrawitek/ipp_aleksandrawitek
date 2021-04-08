@@ -1,7 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8"></charset>
+        <title> Utwórz konto </title>
+        <link href='http://fonts.googleapis.com/css?family=Buenard&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <style>
+            body 
+            {
+                background-image: url("../../static/glowna_tlo.png");
+                padding-top: 100px;
+                font-family: 'Buenard', sans-serif;
+            }
+            div
+            {
+                width: 40%;
+                height: 550px;
+                background-color: #b3ccff;
+                border-radius: 25px;
+                padding: 10px;
+            }
+
+            div h
+            {
+                font-size: large;
+            }
+            p img
+            {
+                width: 50px;
+                height: 40px;
+                border-radius: 5px 0px 0px 5px;
+            }
+            p input
+            {
+                width: 28%;
+                height: 35px;
+                border-radius: 0px 5px 5px 0px;
+                text-align: left;
+                position: absolute;
+
+            }
+            p
+            {
+                text-align: left;
+                margin-left: 25px;
+                margin-top: 25px;    
+            }
+
+            button
+            {
+                background-color:#2985c2;
+                color: white;
+                border-radius: 5px;
+            }
+
+        </style>
+        <center>
+            <div>
+                <h><b>Utwórz konto</b></h>
+                <p>
+                    <img src = "../../static/user_label.png">
+                    <input type="text" name="username">
+                </p>
+                <p>
+                    <img src = "../../static/user_label.png">
+                    <input type="text" name="first_name">
+                </p>
+                <p>
+                    <img src = "../../static/user_label.png">
+                    <input type="text" name="last_name">
+                </p>
+                <p>
+                    <img src = "../../static/email_label.png">
+                    <input type="email" name="email">
+                </p>
+                <p>
+                    <img src = "../../static/passwd_label.png">
+                    <input type="password" name="password1">
+                </p>
+                <p>
+                    <img src = "../../static/passwd_label.png">
+                    <input type="password" name="password2">
+                </p>
+                <button> ZAREJESTRUJ SIĘ </button>
+            
+            </div>
+        </center>
+        <script>
+            var form_fields = document.getElementsByTagName('input')
+		    form_fields[0].placeholder='Nazwa użytkownika...';
+		    form_fields[1].placeholder='Imię...';
+		    form_fields[2].placeholder='Nazwisko...';
+		    form_fields[3].placeholder='Email...';
+            form_fields[4].placeholder='Hasło...';
+            form_fields[5].placeholder='Powtórz hasło...';
+        </script>
+    </body>
+</html>
 <form method="POST" action="">
     {% csrf_token %}
     {{form.username.label}}
     {{form.username}}
+
+    {{form.first_name.label}}
+    {{form.first_name}}
+
+    {{form.last_name.label}}
+    {{form.last_name}}
 
     {{form.email.label}}
     {{form.email}}
