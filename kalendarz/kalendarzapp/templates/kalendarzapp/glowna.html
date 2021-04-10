@@ -10,11 +10,13 @@
                 body 
                 {
                     background-image: url("../../static/glowna_tlo.png");
-                    padding-top: 150px;
                     font-family: 'Buenard', sans-serif;
-                    
                 }
-    
+
+                #calendar
+                {
+                    padding-top: 100px;
+                }
                 #month_title 
                 {
                     background-color: #b3ccff;
@@ -28,6 +30,7 @@
                     padding-right: 5px;
                     color: white;
                     text-shadow: 1px 2px grey;
+                    
                 }
                 #month_left
                 {
@@ -36,6 +39,8 @@
                     width: 5%;
                     border-radius: 25px;
                     background-color: white;
+                    position: relative;
+                    margin-top: 2%;
                 }
                 #month_right
                 {
@@ -44,6 +49,8 @@
                     width: 5%;
                     border-radius: 10px;
                     background-color: white;
+                    position: relative;
+                    margin-top: 2%;
                 }
 
                 #week_days, #days
@@ -53,8 +60,8 @@
                 }
                 #week_days td
                 {
-                    border: solid black;
-                    background-color: 	 #ccddff;
+                    border: solid #6a6f7a;
+                    background-color: #b3ccff;
                     width: 12%;
                     text-align: center;
                     border-radius: 15px;
@@ -62,44 +69,72 @@
 
                 #days td
                 {
-                    border: solid black;
+                    border: solid #6a6f7a;
                     width: 12%;
                     height: 70px;
                     background-color: white;
                     border-radius: 15px;
                     padding-left: 2px;
                 }
+
+                #greeting
+                {
+                    padding-right: 8%;
+                    padding-left: 1%;
+                    padding-bottom:0.5%;
+                    background-color: #b3ccff;
+                    width: 12%;
+                    position: relative;
+                    border-radius: 15px;
+                    float: right;
+                    text-align: right;
+                    width: auto;
+                    height: auto;
+                }
+
+                #greeting a
+                {
+                    color: grey;
+                    text-shadow: 1px 2px white;
+                    text-decoration: none;
+                    
+                }
+
             </style>
+            <p id = "greeting"><a href="{% url 'logout' %}"> &nbsp Wyloguj się </a> </p>
+            <p id = 'greeting'> Cześć, {{request.user}} </p> 
             <center>
-                <button id = "month_left" onclick="month_left()">&#9664</button>
-                <button id = "month_right" onclick="month_right()">&#9654</button>
-                <div id = "month_title">
+                <div id= "calendar">
+                    <button id = "month_left" onclick="month_left()">&#9664</button>
+                    <button id = "month_right" onclick="month_right()">&#9654</button>
+                    <div id = "month_title">
+                    </div>
+                    <table id = "week_days">
+                        <tr>
+                            <td>Poniedziałek</td><td>Wtorek</td><td>Środa</td><td>Czwartek</td><td>Piątek</td><td>Sobota</td><td>Niedziela</td>
+                        </tr>
+                    </table>
+                    <table id = "days">
+                        <tr>
+                            <td id = "0"></td><td id = "1"></td><td id = "2"></td><td id = "3"></td><td id = "4"></td><td id = "5"></td><td id = "6"></td>
+                        </tr>
+                        <tr>
+                            <td id = "7"></td><td id = "8"></td><td id = "9"></td><td id = "10"></td><td id = "11"></td><td id = "12"></td><td id = "13"></td>
+                        </tr>
+                        <tr>
+                            <td id = "14"></td><td id = "15"></td><td id = "16"></td><td id = "17"></td><td id = "18"></td><td id = "19"></td><td id = "20"></td>
+                        </tr>
+                        <tr>
+                            <td id = "21"></td><td id = "22"></td><td id = "23"></td><td id = "24"></td><td id = "25"></td><td id = "26"></td><td id = "27"></td>
+                        </tr>
+                        <tr>
+                            <td id = "28"></td><td id = "29"></td><td id = "30"></td><td id = "31"></td><td id = "32"></td><td id = "33"></td><td id = "34"></td>
+                        </tr>
+                        <tr>
+                            <td id = "35"></td><td id = "36"></td><td id = "37"></td><td id = "38"></td><td id = "39"></td><td id = "40"></td><td id = "41"></td>
+                        </tr>
+                    </table>
                 </div>
-                <table id = "week_days">
-                    <tr>
-                        <td>Poniedziałek</td><td>Wtorek</td><td>Środa</td><td>Czwartek</td><td>Piątek</td><td>Sobota</td><td>Niedziela</td>
-                    </tr>
-                </table>
-                <table id = "days">
-                    <tr>
-                        <td id = "0"></td><td id = "1"></td><td id = "2"></td><td id = "3"></td><td id = "4"></td><td id = "5"></td><td id = "6"></td>
-                    </tr>
-                    <tr>
-                        <td id = "7"></td><td id = "8"></td><td id = "9"></td><td id = "10"></td><td id = "11"></td><td id = "12"></td><td id = "13"></td>
-                    </tr>
-                    <tr>
-                        <td id = "14"></td><td id = "15"></td><td id = "16"></td><td id = "17"></td><td id = "18"></td><td id = "19"></td><td id = "20"></td>
-                    </tr>
-                    <tr>
-                        <td id = "21"></td><td id = "22"></td><td id = "23"></td><td id = "24"></td><td id = "25"></td><td id = "26"></td><td id = "27"></td>
-                    </tr>
-                    <tr>
-                        <td id = "28"></td><td id = "29"></td><td id = "30"></td><td id = "31"></td><td id = "32"></td><td id = "33"></td><td id = "34"></td>
-                    </tr>
-                    <tr>
-                        <td id = "35"></td><td id = "36"></td><td id = "37"></td><td id = "38"></td><td id = "39"></td><td id = "40"></td><td id = "41"></td>
-                    </tr>
-                </table>
             </center>
             <script>
 

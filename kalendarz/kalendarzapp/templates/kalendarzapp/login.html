@@ -2,7 +2,7 @@
 <html lang="pl">
     <head>
         <meta charset="utf-8"></charset>
-        <title> Rejestracja </title>
+        <title> Logowanie </title>
         <link href='http://fonts.googleapis.com/css?family=Buenard&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     </head>
     <body>
@@ -12,11 +12,12 @@
                 background-image: url("../../static/glowna_tlo.png");
                 padding-top: 100px;
                 font-family: 'Buenard', sans-serif;
+                position: relative;
             }
             div
             {
                 width: 40%;
-                height: 620px;
+                height: 320px;
                 background-color: #b3ccff;
                 border-radius: 25px;
                 padding: 10px;
@@ -55,7 +56,7 @@
                 margin-left: 50px;
                 box-shadow: 1px 2px grey;
             }
-            p
+            div p
             {
                 text-align: left;
                 margin-left: 25px;
@@ -89,14 +90,15 @@
                 text-decoration: none;
             }
 
-            #error
+            #message
             {
                     margin-top: 25px;
                     width: 40%;
-                    height: auto;
                     color: white;
                     text-shadow: 1px 2px grey;
                     position: absolute;
+                    padding-top: 25px;
+                    padding-bottom: 25px;
                     box-align: center;
                     background-color: #6a6f7a;
                     border-radius: 25px;
@@ -112,34 +114,18 @@
             <div>
                 <form method="POST" action="">
                     {% csrf_token %}
-                    <h><b>Utwórz konto</b></h>
+                    <h><b>Zaloguj się</b></h>
                     <p>
                         <img src = "../../static/user_label1.png">
-                        {{form.username}}
-                    </p>
-                    <p>
-                        <img src = "../../static/user_label1.png">
-                        {{form.first_name}}
-                    </p>
-                    <p>
-                        <img src = "../../static/user_label1.png">
-                        {{form.last_name}}
-                    </p>
-                    <p>
-                        <img src = "../../static/email_label1.png">
-                        {{form.email}}
+                        <input type = "text" name="username" placeholder="Nazwa użytkownika...">
                     </p>
                     <p>
                         <img src = "../../static/passwd_label1.png">
-                        {{form.password1}}
+                        <input type = "password" name="password" placeholder="Hasło...">
                     </p>
-                    <p>
-                        <img src = "../../static/passwd_label1.png">
-                        {{form.password2}}
-                    </p>
-                    <input id="submitbutton" type="submit" name="Create User" value = "ZAREJESTRUJ SIĘ">
-
-                    <p id = "login"> Masz już konto? &nbsp <a href="{% url 'login' %}">  Zaloguj się </a></p>
+                    <input id="submitbutton" type="submit" name="Login User" value = "ZALOGUJ SIĘ">
+                    
+                    <p id = "login"> Nie masz jeszcze konta? &nbsp <a href="{% url 'register' %}">  Zarejestruj się </a></p>
                 </form>
     
 
@@ -147,20 +133,9 @@
             </div>
         </center>
         <center>
-            {% for field in form %}
-                {% for error in field.errors %} 
-                    <p id="error">{{error|escape}}</p>
-                {% endfor %}
+            {% for message in messages%} 
+                <p id="message">{{message}}</p>
             {% endfor %}
         </center>
-        <script>
-            var form_fields = document.getElementsByTagName('input')
-		    form_fields[1].placeholder='Nazwa użytkownika...';
-		    form_fields[2].placeholder='Imię...';
-		    form_fields[3].placeholder='Nazwisko...';
-		    form_fields[4].placeholder='Email...';
-            form_fields[5].placeholder='Hasło...';
-            form_fields[6].placeholder='Powtórz hasło...';
-        </script>
     </body>
 </html>
