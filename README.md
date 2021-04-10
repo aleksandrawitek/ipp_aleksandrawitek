@@ -10,8 +10,8 @@
 
 #### 29.03 - 11.04
 
-- [ ] dodanie możliwości tworzenia konta oraz logowania się <br />
-- [ ] sprawdzanie poprawności formularza wypełnionych danych 
+- [x] dodanie możliwości tworzenia konta oraz logowania się <br />
+- [x] sprawdzanie poprawności formularza wypełnionych danych 
 
 #### 11.04 - 09.05 
 
@@ -55,6 +55,10 @@
 - opracowanie tabeli w bazie danych "db.sqlite3"
 #### 29.03 - 11.04
 - zapoznanie się z wieloma poradnikami dot. tworzenia kont w django oraz panelu administratora (m.in kurs django girls, https://rk.edu.pl/pl/wprowadzenie-do-django-10/)
+- dodanie możliwości tworzenia konta
+- dodanie możliwości logowania
+- sprawdzanie formularza danych (np. czy dany użytkownik juz istnieje, czy podany email jest prawidłowy)
+- dodanie opcji braku możliwości interakcji na stronie bez wcześniejszego zalogowania
 #### 11.04 - 09.05 
 #### 10.05 - 23.05 
 #### 24.05 - 17.06
