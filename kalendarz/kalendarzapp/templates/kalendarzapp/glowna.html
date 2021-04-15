@@ -100,9 +100,25 @@
                     
                 }
 
+                #date
+                {
+                    padding-right: 8%;
+                    padding-left: 1%;
+                    padding-bottom:0.5%;
+                    background-color: #b3ccff;
+                    width: 12%;
+                    position: absolute;
+                    border-radius: 15px;
+                    float: left;
+                    text-align: right;
+                    width: auto;
+                    height: auto;
+                }
+
             </style>
             <p id = "greeting"><a href="{% url 'logout' %}"> &nbsp Wyloguj się </a> </p>
             <p id = 'greeting'> Cześć, {{request.user}} </p> 
+            <p id = 'date'></p> 
             <center>
                 <div id= "calendar">
                     <button id = "month_left" onclick="month_left()">&#9664</button>
@@ -141,7 +157,9 @@
                 //pobranie daty 
                 var date = new Date();
                 var month = date.getMonth();
+                var day = date.getDate();
                 var year = date.getFullYear();
+
 
                 //get month zwraca liczby od 0-11 
                 //funkcja zamienia te liczby na tekst
@@ -392,6 +410,31 @@
 
                 }
 
+                //podswietlenie daty obecnej
+
+                function current_date()
+                {
+                    if (new_year == year)
+                    {
+                        if (new_month == month)
+                        {
+                            var i;
+                            for (i=0; i<42; i++)
+                            {
+                                var x = document.getElementById(i);
+                                var p = x.innerText;
+                                day_str = "'" + day + "'";
+                                if (p == day)
+                                {
+                                    x.style.color = "#0059b3";
+                                    x.style.textDecoration = "underline";
+                                }
+                            }
+                            
+
+                        }
+                    }
+                }
 
                 function month_left()
                 {
@@ -415,6 +458,8 @@
                         create_date();
                         document.getElementById("month_title").innerHTML = text;
                     }
+
+                    current_date();
                 
                 }
 
@@ -439,15 +484,24 @@
                         month_pl2eng();
                         create_date();
                         document.getElementById("month_title").innerHTML = text;
+                        current_date();
                     }
         
                 }
+
+                function display_date()
+                {
+                    var x = document.getElementById("date");
+                    x.innerHTML = day + ' ' + month_num2text(month) + ' ' + year;
+                }
+
                 //wyswietlanie biezacego miesiaca po odpaleniu strony
                 text = month_num2text(month) + ' ' + year;
                 text2 = month_num2text(month);
                 month_pl2eng();
                 create_date();
-
+                display_date();
+                current_date();
 
 
                 
