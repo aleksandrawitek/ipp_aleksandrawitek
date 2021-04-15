@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Meetings
+from .models import *
 
 # Register your models here.
-admin.site.register(Meetings)
+
+admin.site.register(Meeting)
+admin.site.register(Block)
+admin.site.register(Historie)
