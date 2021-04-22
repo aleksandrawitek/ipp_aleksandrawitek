@@ -4,13 +4,16 @@ from django.contrib import messages
 from .forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import *
 
 
 # Create your views here.
 
 @login_required(login_url='login')
 def glowna(request):
-    return render(request, 'kalendarzapp/glowna.html', {})
+    meetings = Meeting.objects.all()
+    blocks = Block.objects.all()
+    return render(request, 'kalendarzapp/glowna.html', {'meetings':meetings, 'blocks': blocks})
 
 def register(request):
     if request.user.is_authenticated:
