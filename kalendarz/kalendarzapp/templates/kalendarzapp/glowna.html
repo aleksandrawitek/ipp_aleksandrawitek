@@ -230,6 +230,8 @@
                 var day_name_number;
                 var table = document.getElementById('days');
                 var num_days;
+                const meetings_db = "{{ meetings }}";
+                const block_db = "{{ blocks }}";
 
                 //nazwa miesiaca na angielski
                 function month_pl2eng()
@@ -505,6 +507,7 @@
                 create_date();
                 display_date();
                 current_date();
+                //document.getElementById('greeting').innerHTML = meetings_db;
 
 
                 
