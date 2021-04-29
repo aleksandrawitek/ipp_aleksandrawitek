@@ -20,7 +20,32 @@ class Meeting(models.Model):
             x = '0'+str(self.month)
         else:
             x = str(self.month)
-        y = self.user + ' - ' + str(self.day) + '.' + x + '.' + str(self.year) + ', ' + str(self.hour_start) + ':' + str(self.minute_start) + '-' + str(self.hour_stop) + ':' + str(self.minute_stop)
+        if (self.day < 10):
+            d = '0'+str(self.day)
+        else:
+            d = str(self.day)
+        if (self.hour_start < 10):
+            hs = '0'+str(self.hour_start)
+        else:
+            hs = str(self.hour_start)
+        if (self.hour_stop < 10):
+            hst = '0'+str(self.hour_stop)
+        else:
+            hst = str(self.hour_stop)
+        if (self.minute_start < 10):
+            ms = '0'+str(self.minute_start)
+        elif (self.minute_start == 0):
+            ms = '00'
+        else:
+            ms = str(self.minute_start)
+        if (self.minute_stop < 10):
+            mst = '0'+str(self.minute_stop)
+        elif (self.minute_stop == 0):
+            mst = '00'
+        else:
+            mst = str(self.minute_stop)
+        
+        y = self.user + ' - ' + d + '.' + x + '.' + str(self.year) + ', ' + hs + ':' + ms + '-' + hst + ':' + mst
         return y
 
 class Historie(models.Model):
@@ -45,5 +70,29 @@ class Block(models.Model):
             x = '0'+str(self.month)
         else:
             x = str(self.month)
-            y = 'Blokada czasu: ' + str(self.day) + '.' + x + '.' + str(self.year) + ', ' + str(self.hour_start) + ':' + str(self.minute_start) + '-' + str(self.hour_stop) + ':' + str(self.minute_stop)
+        if (self.day < 10):
+            d = '0'+str(self.day)
+        else:
+            d = str(self.day)
+        if (self.hour_start < 10):
+            hs = '0'+str(self.hour_start)
+        else:
+            hs = str(self.hour_start)
+        if (self.hour_stop < 10):
+            hst = '0'+str(self.hour_stop)
+        else:
+            hst = str(self.hour_stop)
+        if (self.minute_start < 10):
+            ms = '0'+str(self.minute_start)
+        elif (self.minute_start == 0):
+            ms = '00'
+        else:
+            ms = str(self.minute_start)
+        if (self.minute_stop < 10):
+            mst = '0'+str(self.minute_stop)
+        elif (self.minute_stop == 0):
+            mst = '00'
+        else:
+            mst = str(self.minute_stop)
+        y = d + '.' + x + '.' + str(self.year) + ', ' + hs + ':' + ms + '-' + hst + ':' + mst
         return y

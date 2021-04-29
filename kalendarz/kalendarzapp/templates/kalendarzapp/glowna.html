@@ -232,6 +232,176 @@
                 var num_days;
                 const meetings_db = "{{ meetings }}";
                 const block_db = "{{ blocks }}";
+                var meetings_db_array = [];
+                var meetings_db_hours =[];
+                var meetings_db_date = [];
+                var meetings_db_login = [];
+                var block_db_array = [];
+                var block_db_hours =[];
+                var block_db_date = [];
+                
+                //pobieranie informacji z bazy danych
+                //bazy danych
+
+                for (var i = 0; i < meetings_db.length + 1; i++)
+                {
+                    if(meetings_db[i] == 'M' & meetings_db[i+1] == 'e' & meetings_db[i+2] == 'e' & meetings_db[i+3] == 't' & meetings_db[i+4] == 'i' & meetings_db[i+5] == 'n' & meetings_db[i+6] == 'g' )
+                    {
+                        var k = 9;
+                        var string =''; 
+                        while(meetings_db[i+k] != ',')
+                        {
+                            string += meetings_db[i+k];
+                            k += 1;
+                        }
+
+                        for (var j = 1; j<13; j++)
+                        {
+                            string += meetings_db[i+k+j];
+                        }
+
+                        meetings_db_array.push(string);
+                        
+
+                    }
+
+                }
+
+                for (var i = 0; i < meetings_db_array.length + 1; i++)
+                {
+                    var string = '';
+                    var x = String(meetings_db_array[i]);
+                    //string += x.charAt(x.length-1);
+                    
+                    for (var j = 11; j > -1; j--)
+                    {
+                        if (x.charAt(x.length - j) == 'u')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            string += x.charAt(x.length - j);
+                        }
+                    }
+                    meetings_db_hours.push(string);
+                }
+
+                for (var i = 0; i < meetings_db_array.length + 1; i++)
+                {
+                    var string = '';
+                    var x = String(meetings_db_array[i]);
+                    //string += x.charAt(x.length-1);
+                    
+                    for (var j = 22; j > 12; j--)
+                    {
+                        if (x.charAt(x.length - j) == 'u')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            string += x.charAt(x.length - j);
+                        }
+                    }
+                    meetings_db_date.push(string);
+                }
+
+                for (var i = 0; i < meetings_db_array.length + 1; i++)
+                {
+                    var string = '';
+                    var x = String(meetings_db_array[i]);
+                    //string += x.charAt(x.length-1);
+                    
+                    for (var j = 0; j < x.length + 1; j++)
+                    {
+                        if (x.charAt(j) != ' ')
+                        {
+                            if (x.charAt(j) == 'u')
+                            {
+                                break;
+                            }
+
+                            else 
+                            {
+                                string += x.charAt(j);
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    meetings_db_login.push(string);
+                }
+
+                for (var i = 0; i < block_db.length + 1; i++)
+                {
+                    if(block_db[i] == 'B' & block_db[i+1] == 'l' & block_db[i+2] == 'o' & block_db[i+3] == 'c' & block_db[i+4] == 'k')
+                    {
+                        var k = 6;
+                        var string ='';
+                        
+                        while(block_db[i+k] != ',')
+                        {
+                            string += block_db[i+k];
+                            k += 1;
+                        }
+
+                        for (var j = 1; j<13; j++)
+                        {
+                            string += block_db[i+k+j];
+                        }
+
+                        block_db_array.push(string);
+                        
+
+                    }
+
+                }
+
+                for (var i = 0; i < block_db_array.length + 1; i++)
+                {
+                    var string = '';
+                    var x = String(block_db_array[i]);
+                    //string += x.charAt(x.length-1);
+                    
+                    for (var j = 0; j < 11; j++)
+                    {
+                        if (x.charAt(j) == 'u')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            string += x.charAt(j);
+                        }
+                    }
+                    block_db_date.push(string);
+                }
+
+                for (var i = 0; i < block_db_array.length + 1; i++)
+                {
+                    var string = '';
+                    var x = String(block_db_array[i]);
+                    //string += x.charAt(x.length-1);
+                    
+                    for (var j = 12; j < x.length + 1; j++)
+                    {
+                        if (x.charAt(j) == 'u')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            string += x.charAt(j);
+                        }
+                    }
+                    block_db_hours.push(string);
+                }
+
+    
+
 
                 //nazwa miesiaca na angielski
                 function month_pl2eng()
@@ -507,9 +677,6 @@
                 create_date();
                 display_date();
                 current_date();
-                //document.getElementById('greeting').innerHTML = meetings_db;
-
-
                 
 
             </script>

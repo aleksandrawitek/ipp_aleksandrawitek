@@ -11,7 +11,7 @@ from .models import *
 @login_required(login_url='login')
 def glowna(request):
     meetings = list(Meeting.objects.all())
-    blocks = Block.objects.all()
+    blocks = list(Block.objects.all())
     return render(request, 'kalendarzapp/glowna.html', {'meetings':meetings, 'blocks': blocks})
 
 def register(request):
