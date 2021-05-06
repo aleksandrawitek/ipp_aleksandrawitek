@@ -40,7 +40,7 @@
                     border-radius: 25px;
                     background-color: white;
                     position: relative;
-                    margin-top: 2%;
+                    margin-top: 3.5%;
                 }
                 #month_right
                 {
@@ -50,7 +50,7 @@
                     border-radius: 10px;
                     background-color: white;
                     position: relative;
-                    margin-top: 2%;
+                    margin-top: 3.5%;
                 }
 
                 #week_days, #days
@@ -114,11 +114,25 @@
                     width: auto;
                     height: auto;
                 }
+                #addnew 
+                {
+                    border: solid #6a6f7a;
+                    color: #6a6f7a;
+                    background-color: #9fe3b1;
+                    font-size: 13px;
+                    border-radius: 15px;
+                    margin-top: 7%;
+                    position: absolute;
+                    margin-left: 70%;
+                    
+
+                }
 
             </style>
             <p id = "greeting"><a href="{% url 'logout' %}"> &nbsp Wyloguj się </a> </p>
             <p id = 'greeting'> Cześć, {{request.user}} </p> 
             <p id = 'date'></p> 
+            <button id = 'addnew' onclick = "addnew()"> + Dodaj nowe spotkanie </button>
             <center>
                 <div id= "calendar">
                     <button id = "month_left" onclick="month_left()">&#9664</button>
@@ -239,6 +253,7 @@
                 var block_db_array = [];
                 var block_db_hours =[];
                 var block_db_date = [];
+                var email = "{{ email }}";
                 
                 //pobieranie informacji z bazy danych
                 //bazy danych
@@ -669,6 +684,11 @@
                     x.innerHTML = day + ' ' + month_num2text(month) + ' ' + year;
                 }
 
+                function addnew()
+                {
+                    var new_window = window.open("http://localhost:8000/addnew", "Dodaj nowe spotkanie", "width=700, height=700");
+                }
+
 
                 //wyswietlanie biezacego miesiaca po odpaleniu strony
                 text = month_num2text(month) + ' ' + year;
@@ -677,7 +697,6 @@
                 create_date();
                 display_date();
                 current_date();
-                
 
             </script>
     </body>

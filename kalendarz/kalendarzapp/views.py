@@ -12,7 +12,16 @@ from .models import *
 def glowna(request):
     meetings = list(Meeting.objects.all())
     blocks = list(Block.objects.all())
-    return render(request, 'kalendarzapp/glowna.html', {'meetings':meetings, 'blocks': blocks})
+    email = request.user.email
+    return render(request, 'kalendarzapp/glowna.html', {'meetings':meetings, 'blocks': blocks, 'email': email})
+    
+@login_required(login_url='login')
+def addnew(request):
+    meetings = list(Meeting.objects.all())
+    blocks = list(Block.objects.all())
+    email = request.user.email
+    return render(request, 'kalendarzapp/addnew.html', {'meetings':meetings, 'blocks': blocks, 'email': email})
+
 
 def register(request):
     if request.user.is_authenticated:
@@ -46,5 +55,6 @@ def loginPage(request):
 def logoutPage(request):
     logout(request)
     return redirect('login')
+
 
 
