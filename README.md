@@ -15,8 +15,8 @@
 
 #### 11.04 - 09.05 
 
-- [ ] dodawanie spotkania do kalendarza <br />
-- [ ] zautomatyzowane wysyłanie emaili z potwierdzeniem umówienia wizyty
+- [x] dodawanie spotkania do kalendarza <br />
+- [x] zautomatyzowane wysyłanie emaili z potwierdzeniem umówienia wizyty
 
 #### 10.05 - 23.05 
 
@@ -60,5 +60,11 @@
 - sprawdzanie formularza danych (np. czy dany użytkownik juz istnieje, czy podany email jest prawidłowy)
 - dodanie opcji braku możliwości interakcji na stronie bez wcześniejszego zalogowania
 #### 11.04 - 09.05 
+- opcja z dodaniem spotkania (przycisk - sam wygląd będzie jeszcze dopracowany)
+- połączenie bazy danych z plikami html oraz informacjami wprowadzanymi przez użytkownika (input)
+- pobieranie informacji o emailu zalogowanej osoby
+- wysłanie na podany adres email wiadomosci z danymi dotyczacymi umówionej w danym momencie wizyty
+- utworzenie adresu email na potrzeby projektu oraz konfiguracja zabezpieczeń (tak aby możliwe było wysyłanie zautomatyzowanych wiadomości)
+- do dopracowania są jeszcze sprawdzanie poprawności umawianych dat, godzin itp. natomiast większość czasu spędziłam na połączeniu bazy danych z plikami html (był to konieczny krok aby w przyszłości móc wyświetlać umówione już spotkania w kalendarzu startowym). Natomiast czas na tego typu poprawki założyłam w końcowym etapie projektu.
 #### 10.05 - 23.05 
 #### 24.05 - 17.06
