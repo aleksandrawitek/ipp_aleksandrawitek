@@ -10,14 +10,14 @@
             body 
             {
                 background-image: url("../../static/glowna_tlo.png");
-                padding-top: 100px;
+                padding-top: 50px;
                 font-family: 'Buenard', sans-serif;
                 position: relative;
             }
             div
             {
-                width: 40%;
-                height: 320px;
+                width: 45%;
+                height: 470px;
                 background-color: #b3ccff;
                 border-radius: 25px;
                 padding: 10px;
@@ -47,6 +47,10 @@
                 background-color: white; 
                 padding: 5px;   
             }
+            div p:first-of-type
+            {
+                margin-top: 55px;
+            }
 
             #submitbutton
             {
@@ -58,73 +62,171 @@
                 box-shadow: 1px 2px grey;
             }
 
+            #addnew
+            {
+                background-color: #6a6f7a;
+                color: white;
+                border-radius: 25px;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-shadow: 1px 2px grey;
+                margin-top:10px;
+            }
+
+            #message
+            {
+                    margin-top: 25px;
+                    width: 40%;
+                    color: white;
+                    text-shadow: 1px 2px grey;
+                    position: absolute;
+                    padding-top: 25px;
+                    padding-bottom: 25px;
+                    box-align: center;
+                    background-color: #6a6f7a;
+                    border-radius: 25px;
+                    box-shadow: 1px 2px lightgray;
+                    text-align: center;
+                    display: inline-block;
+                    margin-left: -20%;
+            }
+
 
         </style>
         <center>
             <div>
                <h> Dodaj spotkanie </h>
-                <p><label for="day">Dzień:</label>
-                    <select id = "day" name="day">
-                        <option value = '01'>01</option>
-                        <option value = '02'>02</option>
-                        <option value = '03'>03</option>
-                        <option value = '04'>04</option>
-                        <option value = '05'>05</option>
-                        <option value = '06'>06</option>
-                        <option value = '07'>07</option>
-                        <option value = '08'>08</option>
-                        <option value = '09'>09</option>
-                        <option value = '10'>10</option>
-                        <option value = '11'>11</option>
-                        <option value = '12'>12</option>
-                        <option value = '13'>13</option>
-                        <option value = '14'>14</option>
-                        <option value = '15'>15</option>
-                        <option value = '16'>16</option>
-                        <option value = '17'>17</option>
-                        <option value = '18'>18</option>
-                        <option value = '19'>19</option>
-                        <option value = '20'>20</option>
-                        <option value = '21'>21</option>
-                        <option value = '22'>22</option>
-                        <option value = '23'>23</option>
-                        <option value = '24'>24</option>
-                        <option value = '25'>25</option>
-                        <option value = '26'>26</option>
-                        <option value = '27'>27</option>
-                        <option value = '28'>28</option>
-                        <option value = '29'>29</option>
-                        <option value = '30'>30</option>
-                        <option value = '31'>31</option>
-                    </select>
-                </p>
-                <p><label for="month">Miesiąc:</label>
-                    <select id = "month" name="month">
-                        <option value = '01'> Styczeń </option>
-                        <option value = '02'> Luty </option>
-                        <option value = '03'> Marzec </option>
-                        <option value = '04'> Kwiecień </option>
-                        <option value = '05'> Maj </option>
-                        <option value = '06'> Czerwiec </option>
-                        <option value = '07'> Lipiec </option>
-                        <option value = '08'> Sierpień </option>
-                        <option value = '09'> Wrzesień </option>
-                        <option value = '10'> Październik </option>
-                        <option value = '11'> Listopad </option>
-                        <option value = '12'> Grudzień </option>
-                        
-                    </select>
-                </p>
+               <form method="POST" action="">
+                    {% csrf_token %}
+                    <p><label for="day">Dzień:</label>
+                        <select id = "day" name="day">
+                            <option value = '01'>01</option>
+                            <option value = '02'>02</option>
+                            <option value = '03'>03</option>
+                            <option value = '04'>04</option>
+                            <option value = '05'>05</option>
+                            <option value = '06'>06</option>
+                            <option value = '07'>07</option>
+                            <option value = '08'>08</option>
+                            <option value = '09'>09</option>
+                            <option value = '10'>10</option>
+                            <option value = '11'>11</option>
+                            <option value = '12'>12</option>
+                            <option value = '13'>13</option>
+                            <option value = '14'>14</option>
+                            <option value = '15'>15</option>
+                            <option value = '16'>16</option>
+                            <option value = '17'>17</option>
+                            <option value = '18'>18</option>
+                            <option value = '19'>19</option>
+                            <option value = '20'>20</option>
+                            <option value = '21'>21</option>
+                            <option value = '22'>22</option>
+                            <option value = '23'>23</option>
+                            <option value = '24'>24</option>
+                            <option value = '25'>25</option>
+                            <option value = '26'>26</option>
+                            <option value = '27'>27</option>
+                            <option value = '28'>28</option>
+                            <option value = '29'>29</option>
+                            <option value = '30'>30</option>
+                            <option value = '31'>31</option>
+                        </select>
+                    </p>
+                    <p><label for="month">Miesiąc:</label>
+                        <select id = "month" name="month">
+                            <option value = '01'> Styczeń </option>
+                            <option value = '02'> Luty </option>
+                            <option value = '03'> Marzec </option>
+                            <option value = '04'> Kwiecień </option>
+                            <option value = '05'> Maj </option>
+                            <option value = '06'> Czerwiec </option>
+                            <option value = '07'> Lipiec </option>
+                            <option value = '08'> Sierpień </option>
+                            <option value = '09'> Wrzesień </option>
+                            <option value = '10'> Październik </option>
+                            <option value = '11'> Listopad </option>
+                            <option value = '12'> Grudzień </option>
+                            
+                        </select>
+                    </p>
 
-                <p><label for="year">Rok:</label>
-                    <input id = "year" type="year" name="year" min= "2021"  value = "2021">
-                </p>
-            
+                    <p><label for="year">Rok:</label>
+                        <input id = "year" type="year" name="year" min= "2021"  value = "2021">
+                    </p>
+                    <p><label for="hour_start">Godzina rozpoczęcia:</label>
+                        <select id = "hour_start" name="hour_start">
+                            <option value = '08'> 08 </option>
+                            <option value = '09'> 09 </option>
+                            <option value = '10'> 10 </option>
+                            <option value = '11'> 11 </option>
+                            <option value = '12'> 12 </option>
+                            <option value = '13'> 13 </option>
+                            <option value = '14'> 14 </option>
+                            <option value = '15'> 15 </option>
+                            <option value = '16'> 16 </option>
+                            <option value = '17'> 17 </option>
+                            <option value = '18'> 18 </option>
+                            <option value = '19'> 19 </option>
+                            <option value = '20'> 20 </option>
+                        </select>
+                        <select id = "minute_start" name="minute_start">
+                            <option value = '00'> 00 </option>
+                            <option value = '05'> 05 </option>
+                            <option value = '10'> 10 </option>
+                            <option value = '15'> 15 </option>
+                            <option value = '20'> 20 </option>
+                            <option value = '25'> 25 </option>
+                            <option value = '30'> 30 </option>
+                            <option value = '35'> 35 </option>
+                            <option value = '40'> 40 </option>
+                            <option value = '45'> 45 </option>
+                            <option value = '50'> 50 </option>
+                            <option value = '55'> 55 </option>  
+                        </select>
+                    </p>
+                    <p><label for="hour_stop">Godzina zakończenia:</label>
+                        <select id = "hour_stop" name="hour_stop">
+                            <option value = '08'> 08 </option>
+                            <option value = '09'> 09 </option>
+                            <option value = '10'> 10 </option>
+                            <option value = '11'> 11 </option>
+                            <option value = '12'> 12 </option>
+                            <option value = '13'> 13 </option>
+                            <option value = '14'> 14 </option>
+                            <option value = '15'> 15 </option>
+                            <option value = '16'> 16 </option>
+                            <option value = '17'> 17 </option>
+                            <option value = '18'> 18 </option>
+                            <option value = '19'> 19 </option>
+                            <option value = '20'> 20 </option>
+                        </select>
+                        <select id = "minute_stop" name="minute_stop">
+                            <option value = '00'> 00 </option>
+                            <option value = '05'> 05 </option>
+                            <option value = '10'> 10 </option>
+                            <option value = '15'> 15 </option>
+                            <option value = '20'> 20 </option>
+                            <option value = '25'> 25 </option>
+                            <option value = '30'> 30 </option>
+                            <option value = '35'> 35 </option>
+                            <option value = '40'> 40 </option>
+                            <option value = '45'> 45 </option>
+                            <option value = '50'> 50 </option>
+                            <option value = '55'> 55 </option>  
+                        </select>
+                    </p>
+                    <center><button type = "submit" value= "Zatwierdź" id = 'addnew'>Zatwierdź</button></center>
+                </form>
             </div>
         </center>
+        <center>
+            {% for message in messages%} 
+                <p id="message">{{message}}</p>
+            {% endfor %}
+        </center>
         <script>
-
-
+           
         </script>
     </body>
 </html>
