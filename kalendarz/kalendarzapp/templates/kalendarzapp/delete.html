@@ -147,6 +147,10 @@
                 
                 
             }
+            #history
+            {
+                margin-top: 40px;
+            }
 
 
 
@@ -157,27 +161,8 @@
                <h> Twój profil </h>
                <form method="POST" action="">
                     {% csrf_token %}
-                   <form method="POST" action="" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% for image in picture %}
-                            <img src = "{{ image.profile_pic.url }}">
-                        {% endfor %}
-                        <center>{{form.as_p}}</center>
-                    </form>
-                    <p>
-                        Nazwa użytkownika: <input type = "text" name="username" placeholder="{{ user }}"> 
-                    </p>
-                    <p>
-                        Email: <input type = "text" name="email" placeholder="{{ email }}">
-                    </p>
-                    <p>
-                        Imię: <input type = "text" name="name" placeholder="{{ name }}"> 
-                    </p>
-                    <p>
-                        Nazwisko: <input type = "text" name="lastname" placeholder="{{ lastname }}">
-                    </p>
                     <p id = "history">
-                        Historia spotkań:
+                        Nadchodzące spotkania:
                         {% for item in meetings %} 
                             {% if item.day < 10 %}
                                 {% if item.month < 10 %}

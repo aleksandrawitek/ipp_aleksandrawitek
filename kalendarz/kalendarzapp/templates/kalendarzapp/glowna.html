@@ -199,6 +199,15 @@
                     box-sizing: border-box;
                 }
 
+                img
+                {
+                    width: 25px;;
+                    border-radius: 100%;
+                    position: absolute;
+                    transform: translateX(2800%);
+                    margin-top:15px;
+                }
+
             </style>
             <p id = 'navbar'>
                 <nav id = "show">
@@ -208,6 +217,9 @@
                         </li>
                         <li>
                             <a href=http://localhost:8000/addnew> Umów się </a>
+                        </li>
+                        <li>
+                            <a href=http://localhost:8000/delete> Odwołaj spotkanie </a>
                         </li>
                         <li>
                             <a href="{% url 'logout' %}"> Wyloguj się </a>
@@ -223,7 +235,10 @@
                 <div class="line3"></div>
             </div>
 
-            <p id = 'greeting'> Cześć, {{request.user}} </p> 
+            <p id = 'greeting'> Cześć, {{request.user}} </p>
+            {% for image in picture %}
+                        <img src = "{{ image.profile_pic.url }}">
+            {% endfor %} 
             <p id = 'date'></p> 
             
             <center>
@@ -789,6 +804,7 @@
     
                     var x = document.getElementById("show");
                     var y = document.getElementById("date");
+                    var z = document.getElementById("month_left");
                     var style_display = y.style.display;
                     x.style.transform = "translateX(0%)";
                     y.style.display = "none";
@@ -796,15 +812,19 @@
                     {
                         x.style.transform = "translateX(-200%)";
                         y.style.display = "block";
+                        z.style.display = "block";
                     }
                     else
                     {
                         x.style.transform = "translateX(0%)";
                         y.style.display = "none";
+                        z.style.display = "none";
                     }
 
 
                 }
+
+                
 
                 //wyswietlanie biezacego miesiaca po odpaleniu strony
                 text = month_num2text(month) + ' ' + year;
