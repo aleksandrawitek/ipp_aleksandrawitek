@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8"></charset>
+        <title> Twój profil </title>
+        <link href='http://fonts.googleapis.com/css?family=Buenard&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <style>
+            body 
+            {
+                background-image: url("../../static/glowna_tlo.png");
+                padding-top: 50px;
+                font-family: 'Buenard', sans-serif;
+                position: relative;
+            }
+            div
+            {
+                width: 45%;
+                background-color: #b3ccff;
+                border-radius: 25px;
+                padding: 10px;
+                box-shadow: 1px 2px grey;
+            }
+
+            div h
+            {
+                font-size: 35px;
+                border:solid white;
+                border-radius: 25px;
+                padding: 20px;
+                background-color:  #b3ccff;
+                color: white;
+                text-shadow: 1px 2px grey;
+                box-shadow: 1px 2px grey;
+            }
+
+            div p
+            {
+                text-align: left;
+                margin-left: 10px;
+                margin-top: 35px;
+                border-radius: 5px 5px 5px 5px;
+                text-align: left;
+                box-shadow: 1px 2px grey;
+                background-color: white; 
+                padding: 5px;   
+            }
+            div p:first-of-type
+            {
+                margin-top: 5px;
+            }
+
+            #submitbutton
+            {
+                background-color: #6a6f7a;
+                color: white;
+                border-radius: 25px;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-shadow: 1px 2px grey;
+            }
+            a
+            {
+                background-color: #6a6f7a;
+                color: white;
+                border-radius: 25px;
+                padding-left: 10px;
+                padding-right: 10px;
+                text-decoration: none;
+                box-shadow: 1px 2px grey, 0px 0px 0px 2px white;
+                position: absolute;
+                margin-left: -85px;
+                margin-top: 20px;
+            }
+
+            #addnew
+            {
+                background-color: #6a6f7a;
+                color: white;
+                border-radius: 25px;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-shadow: 1px 2px grey;
+                margin-top:10px;
+            }
+
+            #message
+            {
+                    margin-top: 25px;
+                    width: 45%;
+                    color: white;
+                    text-shadow: 1px 2px grey;
+                    position: absolute;
+                    padding-top: 25px;
+                    padding-bottom: 25px;
+                    box-align: center;
+                    background-color: #6a6f7a;
+                    border-radius: 25px;
+                    box-shadow: 1px 2px lightgray;
+                    text-align: center;
+                    display: inline-block;
+                    margin-left: -20%;
+            }
+            .detail
+            {
+                text-align: left;
+                margin-left: 10px;
+                border-radius: 5px 5px 5px 5px;
+                text-align: left;
+                box-shadow: 1px 2px grey;
+                background-color: white; 
+                padding: 5px; 
+                margin-top: -10px;
+                 
+
+            }
+            #show
+            {
+                position: relative; 
+                background-color: #6a6f7a;
+                color: white;
+                width: 100px;
+                border-radius: 25px;
+                box-shadow: 1px 2px grey;
+                margin-bottom: 2px;
+            }
+            #profile
+            {
+                height: 750px;
+            }
+            img
+            {
+                width: 45%;;
+                border-radius: 25%;
+                margin-top: 40px;
+            }
+            #addphoto
+            {
+                background-color: #6a6f7a;
+                color: white;
+                border-radius: 25px;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-shadow: 1px 2px grey;
+                margin-bottom: 20px;
+                
+                
+            }
+
+
+
+
+        </style>
+        <center>
+            <div id = "profile">
+               <h> Twój profil </h>
+               <form method="POST" action="">
+                    {% csrf_token %}
+                   <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for image in picture %}
+                            <img src = "{{ image.profile_pic.url }}">
+                        {% endfor %}
+                        <center>{{form.as_p}}</center>
+                    </form>
+                    <p>
+                        Nazwa użytkownika: <input type = "text" name="username" placeholder="{{ user }}"> 
+                    </p>
+                    <p>
+                        Email: <input type = "text" name="email" placeholder="{{ email }}">
+                    </p>
+                    <p>
+                        Imię: <input type = "text" name="name" placeholder="{{ name }}"> 
+                    </p>
+                    <p>
+                        Nazwisko: <input type = "text" name="lastname" placeholder="{{ lastname }}">
+                    </p>
+                    <p id = "history">
+                        Historia spotkań:
+                        {% for item in meetings %} 
+                            {% if item.day < 10 %}
+                                {% if item.month < 10 %}
+                                    <p class = "detail"> 0{{ item.day }}.0{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% else %}  
+                                    <p class = "detail"> 0{{ item.day }}.{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% endif %}
+                            {% else %}  
+                                {% if item.month < 10 %}
+                                    <p class = "detail"> {{ item.day }}.0{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% else %}  
+                                    <p class = "detail"> {{ item.day }}.{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% endif %} 
+                            {% endif %}  
+                        {% endfor %}
+                    <center><button type = "submit" value= "Zatwierdź" id = 'addnew'>Zatwierdź zmiany</button></center>
+                    <center><a href=http://localhost:8000> Powrót do strony głównej </a></center>
+                </form>
+            </div>
+        </center>
+        <center>
+            {% for message in messages%} 
+                <p id="message">{{message}}</p>
+            {% endfor %}
+        </center>
+        <script>
+            function count()
+            {
+                var x = document.getElementsByClassName('detail').length;
+                var y = x*35 + 750;
+                document.getElementById('profile').style.height = '' + y + 'px';
+            }
+            count();
+           
+
+           
+        </script>
+    </body>
+</html>
