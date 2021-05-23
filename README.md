@@ -21,9 +21,9 @@
 #### 10.05 - 23.05 
 
 - [x] dopracowanie zakładki konta użytkownika <br />
-- [ ] dodanie opcji odwołania spotkania <br />
+- [x] dodanie opcji odwołania spotkania <br />
 - [x] przeglądanie historii <br />
-- [ ] wysyłanie emaila z przypomnieniem o spotkaniu
+- [x] wysyłanie emaila z przypomnieniem o spotkaniu
 
 #### 24.05 - 17.06
 
@@ -70,4 +70,6 @@
 - dodanie do strony głównej navigation bar (interaktywnego)
 - dopracowanie zakładki konta użytkownika wraz z dodaniem zdjęcia profilowego
 - oglądanie historii umówionych spotkań
+- dodanie opcji odwołania spotkania - do dopracowania
+- wysyłanie emaili z przypomnieniem (zautomatyzowane z użyciem celery)
 #### 24.05 - 17.06
