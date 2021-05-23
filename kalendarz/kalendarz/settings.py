@@ -134,3 +134,9 @@ EMAIL_HOST_USER = 'ipp.awitek@gmail.com'
 EMAIL_HOST_PASSWORD = 'Djangowebsite1'
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+
+#media
+
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'kalendarzapp/static/images')
+

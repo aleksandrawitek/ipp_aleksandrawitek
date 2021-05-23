@@ -83,7 +83,6 @@
                     padding-left: 1%;
                     padding-bottom:0.5%;
                     background-color: #b3ccff;
-                    width: 12%;
                     position: relative;
                     border-radius: 15px;
                     float: right;
@@ -106,7 +105,6 @@
                     padding-left: 1%;
                     padding-bottom:0.5%;
                     background-color: #b3ccff;
-                    width: 12%;
                     position: absolute;
                     border-radius: 15px;
                     float: left;
@@ -127,12 +125,107 @@
                     
 
                 }
+                #navbar
+                {
+                    padding-right: 8%;
+                    padding-left: 1%;
+                    padding-bottom:0.5%;
+                    width: 12%;
+                    position: absolute;
+                    border-radius: 15px;
+                    text-align: left;
+                    width: auto;
+                    height: auto;
+                    margin-top: -12px;
+                    box-sizing: border-box;
+                }
+
+
+                nav
+                {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    flex-direction: column;
+                    position: absolute;
+                    background-color: #b3ccff;
+                    border-radius: 15px;
+                    padding-right: 30px;
+                    transform: translateX(-200%);
+                    margin-top: -15px;
+                    
+    
+                }
+                nav li
+                {
+                    justify-content: space-around;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 20px;
+                }
+                li a
+                {
+                    text-decoration: none;
+                    flex-direction: column;
+                    align-items: center;
+                    color: white;
+                    text-shadow: 1px 2px grey;
+                    padding-top: 1px;
+
+                }
+                #icon div
+                {
+                    width: 20px;
+                    height: 3px;
+                    background-color: white;
+                    margin: 2px;
+
+                }
+
+                #icon
+                {
+                    padding-right: 3.5%;
+                    padding-left: 1%;
+                    padding-bottom:0.5%;
+                    padding-top: 0.5%;
+                    background-color: #b3ccff;
+                    position: absolute;
+                    border-radius: 15px;
+                    text-align: center;
+                    width: 25px;
+                    height: auto;
+                    margin-top: -15px;
+                    box-sizing: border-box;
+                }
 
             </style>
-            <p id = "greeting"><a href="{% url 'logout' %}"> &nbsp Wyloguj się </a> </p>
+            <p id = 'navbar'>
+                <nav id = "show">
+                    <ul>
+                        <li>
+                            <a href=http://localhost:8000/profile> Twój profil </a>
+                        </li>
+                        <li>
+                            <a href=http://localhost:8000/addnew> Umów się </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}"> Wyloguj się </a>
+                        </li>
+                        
+
+                    </ul>
+                </nav>
+            </p>
+            <div id="icon" onclick="shownav()">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+
             <p id = 'greeting'> Cześć, {{request.user}} </p> 
             <p id = 'date'></p> 
-            <button id = 'addnew' onclick = "addnew()"> + Dodaj nowe spotkanie </button>
+            
             <center>
                 <div id= "calendar">
                     <button id = "month_left" onclick="month_left()">&#9664</button>
@@ -684,11 +777,34 @@
                     x.innerHTML = day + ' ' + month_num2text(month) + ' ' + year;
                 }
 
-                function addnew()
-                {
-                    var new_window = window.open("http://localhost:8000/addnew", "Dodaj nowe spotkanie", "width=700, height=700");
-                }
+                //function addnew()
+                //{
+                //    var new_window = window.open("http://localhost:8000/addnew", "Dodaj nowe spotkanie", "width=700, height=700");
+                //}
 
+                //wyswietlanie nav bar
+
+                function shownav()
+                {
+    
+                    var x = document.getElementById("show");
+                    var y = document.getElementById("date");
+                    var style_display = y.style.display;
+                    x.style.transform = "translateX(0%)";
+                    y.style.display = "none";
+                    if (style_display == 'none')
+                    {
+                        x.style.transform = "translateX(-200%)";
+                        y.style.display = "block";
+                    }
+                    else
+                    {
+                        x.style.transform = "translateX(0%)";
+                        y.style.display = "none";
+                    }
+
+
+                }
 
                 //wyswietlanie biezacego miesiaca po odpaleniu strony
                 text = month_num2text(month) + ' ' + year;

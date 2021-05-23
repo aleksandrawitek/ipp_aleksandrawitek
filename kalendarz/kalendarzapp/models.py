@@ -51,6 +51,7 @@ class Meeting(models.Model):
 class Historie(models.Model):
     user = models.CharField(max_length=50, null = True)
     history = models.TextField(null=True, blank=True)
+    profile_pic = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.user

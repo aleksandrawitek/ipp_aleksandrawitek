@@ -82,5 +82,14 @@ def logoutPage(request):
     logout(request)
     return redirect('login')
 
+def profile(request):
+    email = request.user.email
+    user = request.user.username
+    name = request.user.first_name
+    lastname = request.user.last_name
+    meetings = Meeting.objects.filter(user=user)
+    picture = Historie.objects.filter(user=user)
+    return render(request, 'kalendarzapp/profile.html', {'user':user, 'email': email, 'meetings':meetings, 'name':name, 'lastname':lastname, 'picture':picture})
+
 
 
