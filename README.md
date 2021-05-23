@@ -20,9 +20,9 @@
 
 #### 10.05 - 23.05 
 
-- [ ] dopracowanie zakładki konta użytkownika <br />
+- [x] dopracowanie zakładki konta użytkownika <br />
 - [ ] dodanie opcji odwołania spotkania <br />
-- [ ] przeglądanie historii <br />
+- [x] przeglądanie historii <br />
 - [ ] wysyłanie emaila z przypomnieniem o spotkaniu
 
 #### 24.05 - 17.06
@@ -67,4 +67,7 @@
 - utworzenie adresu email na potrzeby projektu oraz konfiguracja zabezpieczeń (tak aby możliwe było wysyłanie zautomatyzowanych wiadomości)
 - do dopracowania są jeszcze sprawdzanie poprawności umawianych dat, godzin itp. natomiast większość czasu spędziłam na połączeniu bazy danych z plikami html (był to konieczny krok aby w przyszłości móc wyświetlać umówione już spotkania w kalendarzu startowym). Natomiast czas na tego typu poprawki założyłam w końcowym etapie projektu.
 #### 10.05 - 23.05 
+- dodanie do strony głównej navigation bar (interaktywnego)
+- dopracowanie zakładki konta użytkownika wraz z dodaniem zdjęcia profilowego
+- oglądanie historii umówionych spotkań
 #### 24.05 - 17.06
