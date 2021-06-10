@@ -73,3 +73,4 @@
 - dodanie opcji odwołania spotkania - do dopracowania
 - wysyłanie emaili z przypomnieniem (zautomatyzowane z użyciem celery)
 #### 24.05 - 17.06
+- dopracowanie zakładki z kontem użytkownika - edytowanie informacji oraz sprawdzanie ich poprawności
