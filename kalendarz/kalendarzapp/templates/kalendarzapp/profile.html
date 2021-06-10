@@ -155,15 +155,15 @@
         <center>
             <div id = "profile">
                <h> Twój profil </h>
-               <form method="POST" action="">
-                    {% csrf_token %}
-                   <form method="POST" action="" enctype="multipart/form-data">
+                   <form method="POST" action="">
                         {% csrf_token %}
                         {% for image in picture %}
                             <img src = "{{ image.profile_pic.url }}">
                         {% endfor %}
                         <center>{{form.as_p}}</center>
                     </form>
+                    <form method="POST" action="">
+                        {% csrf_token %}
                     <p>
                         Nazwa użytkownika: <input type = "text" name="username" placeholder="{{ user }}"> 
                     </p>

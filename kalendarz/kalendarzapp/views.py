@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import CreateUserForm, ChangePhoto
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.core.mail import send_mail
@@ -10,6 +10,7 @@ from kalendarz.settings import EMAIL_HOST_USER
 from datetime import date
 from celery.schedules import crontab
 from celery.task import periodic_task
+
 
 # Create your views here.
 
@@ -117,10 +118,34 @@ def profile(request):
     user = request.user.username
     name = request.user.first_name
     lastname = request.user.last_name
+    fields = get_user_model()
+    profile_fields = fields.objects.all()
     meetings = Meeting.objects.filter(user=user)
     picture = Historie.objects.filter(user=user)
     form = ChangePhoto()
-    return render(request, 'kalendarzapp/profile.html', {'user':user, 'email': email, 'meetings':meetings, 'name':name, 'lastname':lastname, 'picture':picture, 'form':form})
+    if request.method == 'POST' :
+        if request.POST.get('username') or request.POST.get('email') or request.POST.get('name') or request.POST.get('lastname'):
+            if request.POST.get('username') != '': 
+                profile_fields.update(username = request.POST.get('username'))
+            if request.POST.get('email') != '': 
+                profile_fields.update(email = request.POST.get('email'))
+            if request.POST.get('name') != '': 
+                profile_fields.update(first_name = request.POST.get('name'))
+            if request.POST.get('lastname') != '': 
+                profile_fields.update(last_name = request.POST.get('lastname'))
+            #profile_fields.save()
+            email = request.user.email
+            user = request.user.username
+            name = request.user.first_name
+            lastname = request.user.last_name
+            messages.info(request, "Poprawnie zmieniono dane")
+            return render(request, 'kalendarzapp/profile.html', {'user':user, 'email': email, 'meetings':meetings, 'name':name, 'lastname':lastname, 'picture':picture, 'form':form})
+        else:
+            messages.info(request, "Niepoprawnie uzupełniono dane")
+    else:
+        return render(request, 'kalendarzapp/profile.html', {'user':user,'email': email, 'meetings':meetings, 'name':name, 'lastname':lastname, 'picture':picture, 'form':form})
+
+    
 
 
 def delete(request):
