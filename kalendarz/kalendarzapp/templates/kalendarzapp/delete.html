@@ -115,6 +115,20 @@
                  
 
             }
+
+            .detail2
+            {
+                text-align: left;
+                margin-left: 10px;
+                border-radius: 5px 5px 5px 5px;
+                text-align: left;
+                box-shadow: 1px 2px grey;
+                background-color: #6a6f7a; 
+                padding: 5px; 
+                margin-top: -10px;
+                 
+
+            }
             #show
             {
                 position: relative; 
@@ -178,9 +192,67 @@
                                 {% endif %} 
                             {% endif %}  
                         {% endfor %}
-                    <center><button type = "submit" value= "Zatwierdź" id = 'addnew'>Zatwierdź zmiany</button></center>
+                </form>
+                <p class = "detail2"> </p>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <p class = "detail"> Wybierz spotkanie do odwołania: </p>
+                    <p class = "detail"><label for="day">Dzień:</label>
+                        <select id = "day" name="day">
+                            <option value = '01'>01</option>
+                            <option value = '02'>02</option>
+                            <option value = '03'>03</option>
+                            <option value = '04'>04</option>
+                            <option value = '05'>05</option>
+                            <option value = '06'>06</option>
+                            <option value = '07'>07</option>
+                            <option value = '08'>08</option>
+                            <option value = '09'>09</option>
+                            <option value = '10'>10</option>
+                            <option value = '11'>11</option>
+                            <option value = '12'>12</option>
+                            <option value = '13'>13</option>
+                            <option value = '14'>14</option>
+                            <option value = '15'>15</option>
+                            <option value = '16'>16</option>
+                            <option value = '17'>17</option>
+                            <option value = '18'>18</option>
+                            <option value = '19'>19</option>
+                            <option value = '20'>20</option>
+                            <option value = '21'>21</option>
+                            <option value = '22'>22</option>
+                            <option value = '23'>23</option>
+                            <option value = '24'>24</option>
+                            <option value = '25'>25</option>
+                            <option value = '26'>26</option>
+                            <option value = '27'>27</option>
+                            <option value = '28'>28</option>
+                            <option value = '29'>29</option>
+                            <option value = '30'>30</option>
+                            <option value = '31'>31</option>
+                        </select>
+                    </p>
+                    <p class = "detail"><label for="month">Miesiąc:</label>
+                        <select id = "month" name="month">
+                            <option value = '01'> Styczeń </option>
+                            <option value = '02'> Luty </option>
+                            <option value = '03'> Marzec </option>
+                            <option value = '04'> Kwiecień </option>
+                            <option value = '05'> Maj </option>
+                            <option value = '06'> Czerwiec </option>
+                            <option value = '07'> Lipiec </option>
+                            <option value = '08'> Sierpień </option>
+                            <option value = '09'> Wrzesień </option>
+                            <option value = '10'> Październik </option>
+                            <option value = '11'> Listopad </option>
+                            <option value = '12'> Grudzień </option>
+                            
+                        </select>
+                    </p>
+                    <center><button type = "submit" value= "Zatwierdź" id = 'addnew'> Odwołaj spotkanie </button></center>
                     <center><a href=http://localhost:8000> Powrót do strony głównej </a></center>
                 </form>
+
             </div>
         </center>
         <center>
@@ -192,7 +264,7 @@
             function count()
             {
                 var x = document.getElementsByClassName('detail').length;
-                var y = x*35 + 750;
+                var y = x*35 + 300;
                 document.getElementById('profile').style.height = '' + y + 'px';
             }
             count();

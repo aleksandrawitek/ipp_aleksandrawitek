@@ -28,25 +28,54 @@ def addnew(request):
     blocks = list(Block.objects.all())
     email = request.user.email
     user = request.user.username
+    current_day = int(date.today().strftime('%d'))
+    current_month = int(date.today().strftime('%m'))
+    current_year = 2000+int(date.today().strftime('%y')) 
+
     if request.method == 'POST' :
         if request.POST.get('day') and request.POST.get('month') and request.POST.get('year') and request.POST.get('hour_start') and request.POST.get('minute_start') and request.POST.get('hour_stop') and request.POST.get('minute_stop'):
             meeting = Meeting()
-            meeting.day = request.POST.get('day')
-            meeting.month = request.POST.get('month')
-            meeting.year = request.POST.get('year')
-            meeting.user = user
-            meeting.hour_start = request.POST.get('hour_start')
-            meeting.hour_stop = request.POST.get('hour_stop')
-            meeting.minute_start = request.POST.get('minute_start')
-            meeting.minute_stop = request.POST.get('minute_stop')
-            meeting.save()
-            tekst = "Cześć, " +  user + "!" + "\n" + "\n" + "Dodano nowe spotkanie - korepetycje matematyka: \n \n" + "Data: " + str(request.POST.get('day')) + "-" + str(request.POST.get('month')) + "-" + str(request.POST.get('year')) +",\n" + 'Godzina rozpoczęcia: ' + str(request.POST.get('hour_start')) +':'+ str(request.POST.get('minute_start')) + ',\n' + 'Godzina zakończenia: ' + str(request.POST.get('hour_stop')) +":"+ str(request.POST.get('minute_stop')) + ".\n \n" + "W razie pytań proszę się kontaktować pod numerem 123-456-789. \n \n" + "Pozdrawiam, \n Aleksandra Witek"
-            send_mail('Potwierdzenie umówienia wizyty',
-            tekst,
-            EMAIL_HOST_USER, 
-            [str(email)],
-            fail_silently= False)
-            messages.info(request, "Poprawnie zarejestrowano spotkanie")
+            check = Meeting.objects.filter(day=request.POST.get('day'), month=request.POST.get('month'), hour_start=request.POST.get('hour_start'), minute_start__gte=0,hour_stop=request.POST.get('hour_stop'), minute_stop__gte=0)
+            if check.exists():
+                messages.info(request, "Niepoprawnie uzupełniono dane")
+            else:
+                if (int(request.POST.get('month')) == current_month):
+                    if (int(request.POST.get('day')) > current_day):
+                        meeting.day = request.POST.get('day')
+                        meeting.month = request.POST.get('month')
+                        meeting.year = request.POST.get('year')
+                        meeting.user = user
+                        meeting.hour_start = request.POST.get('hour_start')
+                        meeting.hour_stop = request.POST.get('hour_stop')
+                        meeting.minute_start = request.POST.get('minute_start')
+                        meeting.minute_stop = request.POST.get('minute_stop')
+                        meeting.save()
+                        tekst = "Cześć, " +  user + "!" + "\n" + "\n" + "Dodano nowe spotkanie - korepetycje matematyka: \n \n" + "Data: " + str(request.POST.get('day')) + "-" + str(request.POST.get('month')) + "-" + str(request.POST.get('year')) +",\n" + 'Godzina rozpoczęcia: ' + str(request.POST.get('hour_start')) +':'+ str(request.POST.get('minute_start')) + ',\n' + 'Godzina zakończenia: ' + str(request.POST.get('hour_stop')) +":"+ str(request.POST.get('minute_stop')) + ".\n \n" + "W razie pytań proszę się kontaktować pod numerem 123-456-789. \n \n" + "Pozdrawiam, \n Aleksandra Witek"
+                        send_mail('Potwierdzenie umówienia wizyty',
+                        tekst,
+                        EMAIL_HOST_USER, 
+                        [str(email)],
+                        fail_silently= False)
+                        messages.info(request, "Poprawnie zarejestrowano spotkanie")
+                elif (int(request.POST.get('month')) > current_month):
+                    if (int(request.POST.get('year')) == current_year):
+                        meeting.day = request.POST.get('day')
+                        meeting.month = request.POST.get('month')
+                        meeting.year = request.POST.get('year')
+                        meeting.user = user
+                        meeting.hour_start = request.POST.get('hour_start')
+                        meeting.hour_stop = request.POST.get('hour_stop')
+                        meeting.minute_start = request.POST.get('minute_start')
+                        meeting.minute_stop = request.POST.get('minute_stop')
+                        meeting.save()
+                        tekst = "Cześć, " +  user + "!" + "\n" + "\n" + "Dodano nowe spotkanie - korepetycje matematyka: \n \n" + "Data: " + str(request.POST.get('day')) + "-" + str(request.POST.get('month')) + "-" + str(request.POST.get('year')) +",\n" + 'Godzina rozpoczęcia: ' + str(request.POST.get('hour_start')) +':'+ str(request.POST.get('minute_start')) + ',\n' + 'Godzina zakończenia: ' + str(request.POST.get('hour_stop')) +":"+ str(request.POST.get('minute_stop')) + ".\n \n" + "W razie pytań proszę się kontaktować pod numerem 123-456-789. \n \n" + "Pozdrawiam, \n Aleksandra Witek"
+                        send_mail('Potwierdzenie umówienia wizyty',
+                        tekst,
+                        EMAIL_HOST_USER, 
+                        [str(email)],
+                        fail_silently= False)
+                        messages.info(request, "Poprawnie zarejestrowano spotkanie")
+
             return render(request, 'kalendarzapp/addnew.html', {'meetings':meetings, 'blocks': blocks, 'email': email})
         else:
             messages.info(request, "Niepoprawnie uzupełniono dane")
@@ -150,8 +179,28 @@ def profile(request):
 
 def delete(request):
     user = request.user.username
+    email = request.user.email
     current_day = int(date.today().strftime('%d'))
     current_month = int(date.today().strftime('%m'))
-    current_year = int(date.today().strftime('%y'))
-    meetings = Meeting.objects.filter(user=user, day = current_day)
-    return render(request, 'kalendarzapp/delete.html', {'user':user, 'meetings' : meetings})
+    current_year = int(date.today().strftime('%y')) 
+    meetings = Meeting.objects.filter(user=user, day__gte=current_day, month = current_month, year__gte=current_year) | Meeting.objects.filter(user=user, month__gt = current_month, year__gte=current_year)
+    if request.method == 'POST' :
+        if request.POST.get('day') and request.POST.get('month'):
+            delete_day = request.POST.get('day')
+            delete_month = request.POST.get('month')
+            meeting = Meeting.objects.filter(user=user, day=delete_day, month = delete_month)
+            if meeting.exists():
+                meeting.delete()
+                tekst = "Cześć, " +  user + "!" + "\n" + "\n" + "Odwołano spotkanie - korepetycje matematyka: \n \n" + "Data: " + str(request.POST.get('day')) + "-" + str(request.POST.get('month')) + "-" + str(current_year) +".\n \n" + "W razie pytań proszę się kontaktować pod numerem 123-456-789. \n \n" + "Pozdrawiam, \n Aleksandra Witek"
+                send_mail('Potwierdzenie odwołania wizyty',
+                tekst,
+                EMAIL_HOST_USER, 
+                [str(email)],
+                fail_silently= False)
+                messages.info(request, "Poprawnie odwołano spotkanie")
+            else:
+                messages.info(request, "Niepoprawnie uzupełniono dane")
+            return render(request, 'kalendarzapp/delete.html', {'user':user, 'meetings' : meetings})
+                
+    else:
+        return render(request, 'kalendarzapp/delete.html', {'user':user, 'meetings' : meetings})
