@@ -16,11 +16,19 @@ from celery.task import periodic_task
 
 @login_required(login_url='login')
 def glowna(request):
+    current_day = int(date.today().strftime('%d'))
+    current_month = int(date.today().strftime('%m'))
+    current_year = 2000+int(date.today().strftime('%y')) 
     meetings = list(Meeting.objects.all())
     blocks = list(Block.objects.all())
     email = request.user.email
     picture = Historie.objects.filter(user=request.user)
-    return render(request, 'kalendarzapp/glowna.html', {'meetings':meetings, 'blocks': blocks, 'email': email, 'picture':picture})
+    times = "" 
+
+    if request.method == 'POST' :
+        if request.POST.get('day') and request.POST.get('month') and request.POST.get('year'):
+            times = Meeting.objects.filter(day=request.POST.get('day'),month=request.POST.get('month'), year=request.POST.get('year'))
+    return render(request, 'kalendarzapp/glowna.html', {'meetings':meetings, 'times':times, 'blocks': blocks, 'email': email, 'picture':picture})
     
 @login_required(login_url='login')
 def addnew(request):

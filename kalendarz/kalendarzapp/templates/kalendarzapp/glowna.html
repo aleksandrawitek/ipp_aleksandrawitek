@@ -77,6 +77,17 @@
                     padding-left: 2px;
                 }
 
+                #addnew
+                {
+                    background-color: #6a6f7a;
+                    color: white;
+                    border-radius: 25px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    box-shadow: 1px 2px grey;
+                    margin-top:10px;
+                }
+
                 #greeting
                 {
                     padding-right: 8%;
@@ -112,19 +123,7 @@
                     width: auto;
                     height: auto;
                 }
-                #addnew 
-                {
-                    border: solid #6a6f7a;
-                    color: #6a6f7a;
-                    background-color: #9fe3b1;
-                    font-size: 13px;
-                    border-radius: 15px;
-                    margin-top: 7%;
-                    position: absolute;
-                    margin-left: 70%;
-                    
-
-                }
+            
                 #navbar
                 {
                     padding-right: 8%;
@@ -207,6 +206,25 @@
                     transform: translateX(2800%);
                     margin-top:15px;
                 }
+                #days tr td button, #addnew
+                {
+                    background-color: #848891;
+                    color: white;
+                    border-radius: 25px;
+                    box-shadow: 1px 2px grey;
+                }
+
+
+                #checktimetable
+                {
+                    width: 60%;
+                    height: 200px;
+                    background-color: #b3ccff;
+                    border-radius: 25px;
+                    padding: 10px;
+                    box-shadow: 1px 2px grey;
+                    margin-top: 20px;
+                }
 
             </style>
             <p id = 'navbar'>
@@ -253,6 +271,7 @@
                         </tr>
                     </table>
                     <table id = "days">
+                        {% csrf_token %}
                         <tr>
                             <td id = "0"></td><td id = "1"></td><td id = "2"></td><td id = "3"></td><td id = "4"></td><td id = "5"></td><td id = "6"></td>
                         </tr>
@@ -272,6 +291,85 @@
                             <td id = "35"></td><td id = "36"></td><td id = "37"></td><td id = "38"></td><td id = "39"></td><td id = "40"></td><td id = "41"></td>
                         </tr>
                     </table>
+                </div>
+            </center>
+            <center>
+                <div id = 'checktimetable'>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <p><label for="day">Dzień:</label>
+                            <select id = "timetableday" name="day">
+                                <option value = '01'>01</option>
+                                <option value = '02'>02</option>
+                                <option value = '03'>03</option>
+                                <option value = '04'>04</option>
+                                <option value = '05'>05</option>
+                                <option value = '06'>06</option>
+                                <option value = '07'>07</option>
+                                <option value = '08'>08</option>
+                                <option value = '09'>09</option>
+                                <option value = '10'>10</option>
+                                <option value = '11'>11</option>
+                                <option value = '12'>12</option>
+                                <option value = '13'>13</option>
+                                <option value = '14'>14</option>
+                                <option value = '15'>15</option>
+                                <option value = '16'>16</option>
+                                <option value = '17'>17</option>
+                                <option value = '18'>18</option>
+                                <option value = '19'>19</option>
+                                <option value = '20'>20</option>
+                                <option value = '21'>21</option>
+                                <option value = '22'>22</option>
+                                <option value = '23'>23</option>
+                                <option value = '24'>24</option>
+                                <option value = '25'>25</option>
+                                <option value = '26'>26</option>
+                                <option value = '27'>27</option>
+                                <option value = '28'>28</option>
+                                <option value = '29'>29</option>
+                                <option value = '30'>30</option>
+                                <option value = '31'>31</option>
+                            </select>
+                            <label for="month">Miesiąc:</label>
+                            <select id = "timetablemonth" name="month">
+                                <option value = '01'> Styczeń </option>
+                                <option value = '02'> Luty </option>
+                                <option value = '03'> Marzec </option>
+                                <option value = '04'> Kwiecień </option>
+                                <option value = '05'> Maj </option>
+                                <option value = '06'> Czerwiec </option>
+                                <option value = '07'> Lipiec </option>
+                                <option value = '08'> Sierpień </option>
+                                <option value = '09'> Wrzesień </option>
+                                <option value = '10'> Październik </option>
+                                <option value = '11'> Listopad </option>
+                                <option value = '12'> Grudzień </option>
+                                
+                            </select>
+                        
+
+                            <label for="year">Rok:</label>
+                            <input id = "timetableyear" type="year" name="year" min= "2021"  value = "2021">
+                            <button type = "submit" value= "Zatwierdź" id = 'addnew' onclick = "check()">Sprawdź</button>
+                        </p>
+                        Zaplanowane spotkania:
+
+                        {% for item in times %} 
+                            {% if item.day < 10 %}
+                                {% if item.month < 10 %}
+                                    <p class = "detail"> 0{{ item.day }}.0{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% else %}  
+                                    <p class = "detail"> 0{{ item.day }}.{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% endif %}
+                            {% else %}  
+                                {% if item.month < 10 %}
+                                    <p class = "detail"> {{ item.day }}.0{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% else %}  
+                                    <p class = "detail"> {{ item.day }}.{{ item.month }}.{{ item.year }} , {{ item.hour_start }}:{{ item.minute_start }}-{{ item.hour_stop }}:{{ item.minute_stop }}</p>
+                                {% endif %} 
+                            {% endif %}  
+                        {% endfor %}
                 </div>
             </center>
             <script>
@@ -744,6 +842,7 @@
                         text2 = month_num2text(new_month);
                         month_pl2eng();
                         create_date();
+                        addbutton();
                         document.getElementById("month_title").innerHTML = text;
                     }
                     else
@@ -753,6 +852,7 @@
                         text2 = month_num2text(new_month);
                         month_pl2eng();
                         create_date();
+                        addbutton();
                         document.getElementById("month_title").innerHTML = text;
                     }
 
@@ -771,6 +871,7 @@
                         text2 = month_num2text(new_month)
                         month_pl2eng();
                         create_date();
+                        addbutton();
                         document.getElementById("month_title").innerHTML = text;
                     }
                     else
@@ -782,6 +883,8 @@
                         create_date();
                         document.getElementById("month_title").innerHTML = text;
                         current_date();
+                        addbutton();
+
                     }
         
                 }
@@ -824,6 +927,65 @@
 
                 }
 
+                function addbutton()
+                {
+                    for (i=0; i<42; i++)
+                        {
+            
+                            var x = document.getElementById(i);
+                            var y = x.textContent;
+                            var button = document.createElement('button');
+                            button.setAttribute('type', 'submit');
+                            button.setAttribute('value', "Zatwierdź");
+                            var index = 'datecheck' + i;
+                            var js = 'javascript: available(' + i +');';
+                            button.innerHTML = 'Sprawdź terminarz';
+                            if (y != '')
+                            {
+                                button.setAttribute("id", index);
+                                button.setAttribute("onClick", js);
+                                x.append(button);
+                            }
+                        } 
+                }
+
+                function available(a)
+                {
+                    var x = "datecheck" + a
+                    var z = document.getElementById(x);
+                    var b = document.getElementById(a);
+                    if (b.textContent[1] == '0' || b.textContent[1] == '1' || b.textContent[1] == '2' || b.textContent[1] == '3' || b.textContent[1] == '4' || b.textContent[1] == '5' || b.textContent[1] == '6' || b.textContent[1] == '7' || b.textContent[1] == '8' || b.textContent[1] == '9')
+                    {
+                        var dayava = b.textContent[0]+b.textContent[1];
+                    }
+                    else
+                    {
+                        var dayava ='0'+b.textContent[0];
+                    }
+                    var miesiac=new_month+1;
+                    if (miesiac == 1 || miesiac == 2 || miesiac == 3 || miesiac == 4 || miesiac == 5 || miesiac == 6 || miesiac == 7 || miesiac == 8 || miesiac == 9 )
+                    {
+                        miesiac = '0'+miesiac;
+                    }
+                    var miesiac_pol = month_num2text(miesiac-1);
+                    var rok= new_year;
+                    window.scrollBy(0,700);
+                    var w1 = document.getElementById("timetableday");
+                    w1.value = dayava;
+                    var w2 = document.getElementById("timetablemonth");
+                    w2.value = miesiac;
+                    var w3 = document.getElementById("timetableyear");
+                    w3.value = rok;
+                }
+
+                function count()
+                {
+                    var x = document.getElementsByClassName('detail').length;
+                    var y = x*35 + 200;
+                    document.getElementById('checktimetable').style.height = '' + y + 'px';
+                }
+            
+
                 
 
                 //wyswietlanie biezacego miesiaca po odpaleniu strony
@@ -833,6 +995,8 @@
                 create_date();
                 display_date();
                 current_date();
+                addbutton();
+                count();
 
             </script>
     </body>
