@@ -27,9 +27,9 @@
 
 #### 24.05 - 17.06
 
-- [ ] dopracowanie detali <br />
-- [ ] sprawdzenie poprawności działania strony i ewentualne poprawienie błędów <br />
-- [ ] przygotowanie podsumowania oraz prezentacji końcowej
+- [x] dopracowanie detali <br />
+- [x] sprawdzenie poprawności działania strony i ewentualne poprawienie błędów <br />
+- [x] przygotowanie podsumowania oraz prezentacji końcowej
 
 ### Używane technologie:
 
